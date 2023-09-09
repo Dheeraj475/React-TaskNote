@@ -28,7 +28,7 @@ const NoteState = (props) => {
     // )
 
     // Setting the local host url that is being used in the fetching the api call
-    const host = "http://localhost:5000"
+    const host = "https://task-note-api.vercel.app"
     const notesInitial = []  // All notes are going to here
     /*This is being used by practice*/ 
     // [
