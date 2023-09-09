@@ -555,6 +555,7 @@ button:disabled {
 @media screen and (max-width: 500px) {
   .task {
     width: 92%;
+    margin-bottom:30px;
   }
 }
 .task.swipe-right {
