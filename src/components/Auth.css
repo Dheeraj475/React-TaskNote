@@ -109,8 +109,19 @@
     background-color:#D462FF;
     color: var(--white);
     font-size: 1.2rem;
+    height: 42px;
     outline: none;
 }
+  
+  .loading-button-container button:disabled{
+    opacity: 1;
+    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 42px;
+  }
 
 .form button:hover {
     background-color:#bb00ff;;
