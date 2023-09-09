@@ -242,6 +242,11 @@ body {
   height: 100%;
 }
 
+@media screen and (max-width: 500px) {
+  .app {
+   padding-bottom:30px;
+  }
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -555,7 +560,6 @@ button:disabled {
 @media screen and (max-width: 500px) {
   .task {
     width: 92%;
-    margin-bottom:30px;
   }
 }
 .task.swipe-right {
