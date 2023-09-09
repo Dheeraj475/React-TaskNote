@@ -75,7 +75,7 @@ const Authcomp = () => {
     e.preventDefault();
  
     if (password === cpassword){
-    const response = await fetch("http://localhost:5000/api/auth/createuser" , {
+    const response = await fetch("https://task-note-api.vercel.app/api/auth/createuser" , {
      method: "post",
      headers: {
        'Content-Type':'application/json',
@@ -113,7 +113,7 @@ const Authcomp = () => {
     const handleLsubmit= async (e)=> {
      e.preventDefault();
   
-     const response = await fetch("http://localhost:5000/api/auth/login" , {
+     const response = await fetch("https://task-note-api.vercel.app/api/auth/login" , {
       method: "post",
       headers: {
         'Content-Type':'application/json',
