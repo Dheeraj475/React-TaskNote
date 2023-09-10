@@ -321,7 +321,7 @@ useEffect(() => {
           </div>})}
         </div>
         <div className="overlay">
-          <p>Add task</p>{isTextVisible ? <span className='-w-animation'> Fill at least the title 3 characters, description 5 characters required to continue 😵</span> : <span className='-w-animation'>Do fill with title description without filling the tag😂</span>}
+          <p>Add task</p>{isTextVisible ? <span className='-w-animation'> Fill at least the title 3 characters, description 5 characters required to continue 😵</span> : <span className='-w-animation'>Dude! you can fill with title, description but you are grant without filling the tag😂</span>}
           <form className="modal">
            
          
