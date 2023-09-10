@@ -2,10 +2,7 @@ import React, { useState, useEffect,useContext,useCallback } from 'react';
 import './Note.css';
 import noteContext from '../context/notes/noteContext';
 import { useNavigate } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
-
-
+import { DotPulse } from '@uiball/loaders';
 
 const Notescomp = ({ searchQuery }) => {
 
