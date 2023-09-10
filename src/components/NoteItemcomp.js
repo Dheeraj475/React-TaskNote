@@ -4,7 +4,7 @@ import noteContext from '../context/notes/noteContext';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
-import { DotPulse } from '@uiball/loaders'
+import { DotPulse } from '@uiball/loaders';
 
 
 
@@ -114,7 +114,6 @@ const Notescomp = ({ searchQuery }) => {
 
   useEffect(() => {
     const fetchNotes = async () => {
-      try {
         if (localStorage.getItem('token')) {
           setIsLoading(true); 
           await getNotes();
@@ -122,47 +121,60 @@ const Notescomp = ({ searchQuery }) => {
         } else {
           navigate("/auth");
         }
-      } catch (error) {
-        console.error("Error fetching notes:", error);
-        setIsLoading(false); 
-      }
+        setIsLoading(false);   
     };
 
     fetchNotes();
+    // eslint-disable-next-line
   }, [navigate]);
 
  
   // Note and editing state for adding and editing the note using our api call
   const [note, setNote] = useState({title:"",description:"",tag:"medium"})
   const [editingNote, setEditingNote] = useState(null);
-  
+
+  // Showing the button loading state for adding note and editing note buttons
+  const[isbtnLoading,setIsbtnLoading] = useState(false);
+
   // For adding the note as frontend and post requesting to the api
-    const handleAddTask = (e) => {
+    const handleAddTask = async (e) => {
       e.preventDefault();
+      setIsbtnLoading(true);
       if (isEditing && editingNote) {
-        editNote(editingNote._id, note.title, note.description, note.tag);
-        setNote({
-          title: "",
-          description: "",
-          tag: "medium"
-        });
-        document.querySelector('.notification').classList.add('-is-shown');
-        setTimeout(() => {
-        document.querySelector('.notification').classList.remove('-is-shown');
-      }, 1000);
-        setIsEditing(false);
+        editNote(editingNote._id, note.title, note.description, note.tag)
+        .then(() => {
+          setNote({
+            title: "",
+            description: "",
+            tag: "medium",
+          });
+          setIsEditing(false);
+          setIsbtnLoading(false);
+          handleCancelTask(); // Close the modal after the operation is complete
+          document.querySelector('.notification').classList.add('-is-shown');
+          setTimeout(() => {
+          document.querySelector('.notification').classList.remove('-is-shown');
+          }, 1000);
+          setIsEditing(false);
+        })
         
+      } else {
+        setIsbtnLoading(true);
+        addNote(note.title, note.description, note.tag)
+        .then(() => {
+          setNote({
+            title: "",
+            description: "",
+            tag: "medium",
+          });
+          setIsbtnLoading(false);
+          handleCancelTask(); // Close the modal after the operation is complete
+          notifyNoteAdded();
+        })
+      
+    }
   
-      } else {   
-        addNote(note.title, note.description, note.tag);
-        setNote({
-          title: "",
-          description: "",
-          tag: "medium",
-        });
-      notifyNoteAdded();
-      }
-      handleCancelTask();
+   
   }
 
 
@@ -183,20 +195,23 @@ const Notescomp = ({ searchQuery }) => {
       return 'blue'; 
     }
 
+    function taskCompleted(event) {
+      const btn = event.target; // Get the clicked button element
+      const task = btn.closest('.task'); // Find the parent task element
+    if (task) {
+      task.classList.toggle('-is-completed'); // Toggle the class on the task element
+    }
+  }
   
  // Toggle the completion status of a note
- const toggleNoteCompletion = async (note) => {
+  const toggleNoteCompletion = async (note) => {
+    
   const completed = !note.completed;
+  note.completed = completed;
 
-  try {
-    // Update the completion status on the server
-    await updateNoteCompletedStatus(note._id, completed);
+ // Update the completion status on the server
+  await updateNoteCompletedStatus(note._id, completed);
 
-    // Fetch the updated notes after the server update
-    await getNotes();
-  } catch (error) {
-    console.error("Error toggling completion status:", error);
-  }
 };
 
 
@@ -240,11 +255,11 @@ function taskDeleted(event,note) {
     task.classList.add('swipe-right');
   }, 500);
 
-  setTimeout(() => {
+  
     if (task.parentElement) {
-      deleteNote(note._id);
+    deleteNote(note._id);
     }
-  }, 1000);
+
   notifyNoteDeleted();
 }
 
@@ -302,7 +317,7 @@ useEffect(() => {
                 <div className="btn-edit-task" title="Edit task" onClick={()=> updateNote(note)}>
                   <ion-icon name="create"></ion-icon>
                 </div>
-                <div className="btn-complete-task" title="Complete task"  onClick={() => toggleNoteCompletion(note)} >
+                <div className="btn-complete-task" title="Complete task"  onClick={(e) => { taskCompleted(e); toggleNoteCompletion(note); }} >
                   <ion-icon name="checkmark"></ion-icon>
                 </div>
                 <div className="btn-remove-task" title="Remove task" onClick={(e)=> taskDeleted(e,note)}>
@@ -335,9 +350,27 @@ useEffect(() => {
               <label htmlFor="low">Low</label>
             </div>
             <div className="modal-btns">
+              
+            {isbtnLoading? ( 
+                  <div className="loader-btn-add-task">
+                  <button disabled={true} style={{ background: "#dfe1e9" }}>
+                  <DotPulse size={40} color="#bb00ff" />
+                  </button>
+                  </div>
+            ) : (
               <button disabled={note.title.length<3 || note.description.length<5} className="btn-add-task" onClick={handleAddTask}>Add note</button>
+            )}
+              
+              {isbtnLoading? ( 
+              <div className="btn-cancel-task"></div>
+              ) : (
               <div className="btn-cancel-task" onClick={handleCancelTask} >Cancel</div>
+              )}
+           
             </div>
+
+
+
           </form>
         </div>
       </section>
