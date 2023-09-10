@@ -4,14 +4,10 @@ import noteContext from '../context/notes/noteContext';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
-import { DotPulse } from '@uiball/loaders';
 
 
 
 const Notescomp = ({ searchQuery }) => {
-  // Toaster for notifying
-  const notifyNoteAdded = () => toast.success("Note added successfully");
-  const notifyNoteDeleted = () => toast.warning("Note deleted successfully");
 
   // Modal, editing and loading states
   const [showModal, setShowModal] = useState(false);
@@ -169,7 +165,6 @@ const Notescomp = ({ searchQuery }) => {
           });
           setIsbtnLoading(false);
           handleCancelTask(); // Close the modal after the operation is complete
-          notifyNoteAdded();
         })
       
     }
@@ -260,7 +255,6 @@ function taskDeleted(event,note) {
     deleteNote(note._id);
     }
 
-  notifyNoteDeleted();
 }
 
 
