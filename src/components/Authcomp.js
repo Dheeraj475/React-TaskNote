@@ -167,7 +167,7 @@ const Authcomp = () => {
                   </div>
                   {loading ? (
                     <div className="loading-button-container">
-                    <button disabled={true} style={{ background: "#f2f3f8" }}>
+                    <button disabled={true} style={{ background: "#dfe1e9" }}>
                       <DotPulse size={40} color="#bb00ff" />
                     </button>
                   </div>
@@ -207,7 +207,7 @@ const Authcomp = () => {
                   </div>
                   {loading ? ( 
                       <div className="loading-button-container">
-                      <button disabled={true} style={{ background: "#f2f3f8" }}>
+                      <button disabled={true} style={{ background: "#dfe1e9" }}>
                         <DotPulse size={40} color="#bb00ff" />
                       </button>
                     </div>
