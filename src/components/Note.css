@@ -678,7 +678,7 @@ button:disabled {
 .task-footer {
   display: flex;
   align-items: center;
-  margin-left: 27px;
+  margin-left: 10px;
   justify-content: flex-end;
   margin-top: 10px;
 }
@@ -706,6 +706,12 @@ button:disabled {
       -ms-user-select: none;
           user-select: none;
   -moz-user-select: none;
+}
+
+@media screen and (max-width: 500px) {
+  .task-timestamp {
+    font-size: 0.7rem;
+  }
 }
 
 @-webkit-keyframes shake {
