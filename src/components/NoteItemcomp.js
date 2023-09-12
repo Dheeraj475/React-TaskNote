@@ -3,8 +3,23 @@ import './Note.css';
 import noteContext from '../context/notes/noteContext';
 import { useNavigate } from 'react-router-dom';
 import { DotPulse } from '@uiball/loaders';
+import TaskCompletedSound from './Sounds/TaskCompleted.mp3';
+import UnCompletedTaskSound from './Sounds/UnCompletedTask.mp3';
+import TaskDeleted1Sound from './Sounds/TaskDeleted1.mp3';
+import TaskDeleted2Sound from './Sounds/TaskDeleted2.mp3';
+import AddTaskSound from './Sounds/AddTask.mp3'
+
+
+
 
 const Notescomp = ({ searchQuery }) => {
+
+  // Sounds effects
+  const AddSound = new Audio(AddTaskSound);
+  const completeSound = new Audio(TaskCompletedSound);
+  const unCompleteSound = new Audio(UnCompletedTaskSound);
+  const DeletedSound1 = new Audio(TaskDeleted1Sound);
+  const DeletedSound2 = new Audio(TaskDeleted2Sound);
 
   // Modal, editing and loading states
   const [showModal, setShowModal] = useState(false);
@@ -160,6 +175,7 @@ const Notescomp = ({ searchQuery }) => {
             description: "",
             tag: "medium",
           });
+          AddSound.play();
           setIsbtnLoading(false);
           handleCancelTask(); // Close the modal after the operation is complete
         })
@@ -200,6 +216,11 @@ const Notescomp = ({ searchQuery }) => {
     
   const completed = !note.completed;
   note.completed = completed;
+  if (!completed) {
+    unCompleteSound.play();
+  } else {
+    completeSound.play();
+  }
 
  // Update the completion status on the server
   await updateNoteCompletedStatus(note._id, completed);
@@ -226,6 +247,17 @@ const updateNote = (currentnNote) =>{
   });
 }
 
+// Function to play a random delete sound
+function playRandomDeleteSound() {
+  const randomIndex = Math.floor(Math.random() * 2); // Generates 0 or 1
+  if (randomIndex === 0) {
+    DeletedSound1.play();
+  } else {
+    DeletedSound2.play();
+  }
+}
+
+
 // Delete task
 const btnRemoveTask = document.createElement('div');
 btnRemoveTask.classList.add('btn-remove-task');
@@ -249,6 +281,7 @@ function taskDeleted(event,note) {
 
   
     if (task.parentElement) {
+    playRandomDeleteSound();
     deleteNote(note._id);
     }
 
@@ -318,7 +351,8 @@ useEffect(() => {
             </div>
             <div className="task-body"><span className="task-description">{note.description}</span></div>
             <div className="task-footer"><span className="task-status">Task completed</span><span className="task-timestamp">{note.date}</span></div>
-          </div>})}
+          </div>
+        })}
         </div>
         <div className="overlay">
           <p>Add task</p>{isTextVisible ? <span className='-w-animation'> Fill at least the title 3 characters, description 5 characters required to continue 😵</span> : <span className='-w-animation'>Dude! you can fill with title, description but you are grant without filling the tag😂</span>}
