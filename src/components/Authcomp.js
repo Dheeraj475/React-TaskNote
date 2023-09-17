@@ -226,7 +226,7 @@ const Authcomp = () => {
         <div className="row content-row">
           <div className="col align-items-center flex-col">
             <div className="text sign-in">
-              <h2>Welcome to TodoNote</h2>
+              <h2>Welcome to TaskNote</h2>
             </div>
             <div className="img sign-in">
             </div>
@@ -236,7 +236,7 @@ const Authcomp = () => {
 
             </div>
             <div className="text sign-up">
-              <h2>Join TodoNote</h2>
+              <h2>Join TaskNote</h2>
             </div>
           </div>
         </div>
