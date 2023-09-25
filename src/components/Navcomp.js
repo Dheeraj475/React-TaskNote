@@ -38,9 +38,17 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
     naviGate("/auth")
   }
 
+  const [selectedPriority, setSelectedPriority] = useState('All');
+
+  const handlePriorityChange = (e) => {
+    const newValue = e.target.value;
+    setSelectedPriority(newValue); 
+    onSearchChange(searchQuery, newValue);  
+  };
+
   const handleSearchChange = (e) => {
     const newValue = e.target.value;
-    onSearchChange(newValue); // Call the onSearchChange function with the new value
+    onSearchChange(newValue, selectedPriority);
   };
 
 
@@ -49,7 +57,7 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
     {localStorage.getItem("token")&&
     <header className="header">
       <div className="header-top">
-        <div className='header-logo'><Link style={colorStyle}   onMouseEnter={handleHover}  onMouseLeave={handleMouseLeave}  to="/">TaskNote</Link></div>
+        <div className='header-logo'><Link style={colorStyle}   onMouseEnter={handleHover}  onMouseLeave={handleMouseLeave}  to="/">TodoNote</Link></div>
         <div className="header-toggle" onClick={toggleMenu}>
           <div className={`hamburger ${isMenuVisible ? 'is-active' : ''}`} id="hamburgerStyles">
             <span className="line"></span>
@@ -66,6 +74,19 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
             <form onSubmit={(e) => e.preventDefault()}>
               <input type="search"  value={searchQuery} onChange={handleSearchChange}  placeholder="Search" />
             </form>
+          </li>
+          <li className="nav-item">
+            {/* Create the dropdown menu for priorities */}
+            <select className="select"
+              value={selectedPriority}
+              onChange={handlePriorityChange}
+              style={{ fontSize:"15px",appearance:"none",outline:"0",width:"68px",cursor: 'pointer', background:"#C2DFFF",padding: "6px", border:"none", borderRadius:"10px"}}
+            >
+              <option value="All">Priority</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
           </li>
           <li className="nav-item" >
             <b><input onClick={handleLogout} className="logout" type="button" value="Logout" /></b>
