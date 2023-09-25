@@ -12,7 +12,7 @@ import AddTaskSound from './Sounds/AddTask.mp3'
 
 
 
-const Notescomp = ({ searchQuery }) => {
+const Notescomp = ({ searchQuery, selectedPriority }) => {
 
   // Sounds effects
   const AddSound = new Audio(AddTaskSound);
@@ -299,7 +299,8 @@ const queryWords = searchQuery.toLowerCase().split(' ');
       note.title.toLowerCase().includes(queryWord) ||
       note.description.toLowerCase().includes(queryWord)
     );
-  });
+  }) &&
+  (selectedPriority === 'All' || note.tag.toLowerCase() === selectedPriority.toLowerCase())
 });
 
 // Modal heading toggle the text state
