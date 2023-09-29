@@ -272,19 +272,26 @@ function taskDeleted(event,note) {
   const btn = event.target; // Get the clicked button element
   const task = btn.closest('.task'); // Find the parent task element
   let taskStatus = task.querySelector('.task-status');
-  taskStatus.innerText = 'Task removed';
-  task.classList.add('-is-removed');
   
-  setTimeout(() => {
-    task.classList.add('swipe-right');
-  }, 500);
 
-  
+
+   const confirmBox = window.confirm(
+    "Do you really want to delete this note!"
+  )
+
+  if (confirmBox === true) {
+    taskStatus.innerText = 'Task removed';
+    task.classList.add('-is-removed');
+
+    setTimeout(() => {
+      task.classList.add('swipe-right');
+    }, 500);
+
     if (task.parentElement) {
     playRandomDeleteSound();
     deleteNote(note._id);
     }
-
+    }
 }
 
 
