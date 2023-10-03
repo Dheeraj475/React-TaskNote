@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import noteContext from '../context/notes/noteContext';
 
 
 const Navcomp = ({ searchQuery, onSearchChange }) => {
@@ -8,6 +9,10 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
   // useEffect(()=>{
   //   console.log(location.pathname)
   // },[location])
+
+  // Conext api from the express api we have created
+  const context = useContext(noteContext);
+  const {notes} = (context)
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [hovered, setHovered] = useState(false);
 
@@ -57,7 +62,7 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
     {localStorage.getItem("token")&&
     <header className="header">
       <div className="header-top">
-        <div className='header-logo'><Link style={colorStyle}   onMouseEnter={handleHover}  onMouseLeave={handleMouseLeave}  to="/">TodoNote</Link></div>
+        <div className='header-logo'><Link style={colorStyle}   onMouseEnter={handleHover}  onMouseLeave={handleMouseLeave}  to="/">TodoNotes-{notes.length}</Link></div>
         <div className="header-toggle" onClick={toggleMenu}>
           <div className={`hamburger ${isMenuVisible ? 'is-active' : ''}`} id="hamburgerStyles">
             <span className="line"></span>
