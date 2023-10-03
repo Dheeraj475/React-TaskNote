@@ -359,6 +359,7 @@ useEffect(() => {
             </div>
             <div className="task-body"><span className="task-description">{note.description}</span></div>
             <div className="task-footer"><span className="task-status">Task completed</span><span className="task-timestamp">{note.date}</span></div>
+            <code style={{position:"relative",left:"2px",textAlignLast:"left",bottom:"10px",userSelect:"none",color:"#C0C0C0"}}>{index+1}</code>
           </div>
         })}
         </div>
