@@ -133,15 +133,15 @@ const Authcomp = () => {
                   <h2>Sign up</h2>
                   <div className="input-group">
                     <i className="fa-solid fa-user" style={{ color: "#bb00ff" }}></i>
-                    <input type="text" name="username" value={username} minLength={3} placeholder="Username" onChange={(e) => setusername(e.target.value)} required />
+                    <input type="text" name="username" value={username} minLength={3} placeholder="Username" onChange={(e) => setusername(e.target.value)} autoComplete="on" required />
                   </div>
                   <div className="input-group">
                     <i className="fa-solid fa-envelope" style={{ color: "#bb00ff" }}></i>
-                    <input type="email" name="email" value={email} placeholder="Email" onChange={(e) => setemail(e.target.value)} required />
+                    <input type="email" name="email" value={email} placeholder="Email" onChange={(e) => setemail(e.target.value)} autoComplete="on" required />
                   </div>
                   <div className="input-group">
                     <i className="fa-solid fa-key" style={{ color: "#bb00ff" }}></i>
-                    <input type={showPassword ? "text" : "password"} name="Spassword" value={password} minLength={5} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+                    <input type={showPassword ? "text" : "password"} name="Spassword" value={password} minLength={5} onChange={(e) => setPassword(e.target.value)} placeholder="Password" autoComplete="on" required />
 
                     <span className="password-toggle" onClick={togglePasswordVisibility}>
                       {showPassword ? (
@@ -154,7 +154,7 @@ const Authcomp = () => {
                   </div>
                   <div className="input-group">
                     <i className="fa-solid fa-key" style={{ color: "#bb00ff" }}></i>
-                    <input type={showcPassword ? "text" : "password"} minLength={5} value={cpassword} name="Scpassword" onChange={(e) => setcPassword(e.target.value)} placeholder="Confirm password" required />
+                    <input type={showcPassword ? "text" : "password"} minLength={5} value={cpassword} name="Scpassword" onChange={(e) => setcPassword(e.target.value)} placeholder="Confirm password" autoComplete="on" required />
 
                     <span className="password-toggle" onClick={togglecPasswordVisibility}>
                       {showcPassword ? (
@@ -191,11 +191,11 @@ const Authcomp = () => {
                   <h2>Login</h2>
                   <div className="input-group">
                     <i className="fa-solid fa-envelope" style={{ color: "#bb00ff" }}></i>
-                    <input type="email" name="Lemail" value={lemail} placeholder="Email" onChange={(e) => setlemail(e.target.value)} required />
+                    <input type="email" name="Lemail" value={lemail} placeholder="Email" onChange={(e) => setlemail(e.target.value)} autoComplete="on" required />
                   </div>
                   <div className="input-group">
                     <i className="fa-solid fa-key" style={{ color: "#bb00ff" }}></i>
-                    <input type={showlPassword ? "text" : "password"} value={lpassword} name="Lpassword" placeholder="Password" minLength={5} onChange={(e) => setlPassword(e.target.value)} required />
+                    <input type={showlPassword ? "text" : "password"} value={lpassword} name="Lpassword" placeholder="Password" minLength={5} onChange={(e) => setlPassword(e.target.value)} autoComplete="on" required />
                     <span className="password-toggle" onClick={togglelPasswordVisibility}>
                       {showlPassword ? (
                         <i className="fa-solid fa-eye" style={{ color: "#bb00ff" }}></i>
