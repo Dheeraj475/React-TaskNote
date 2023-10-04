@@ -99,6 +99,7 @@ const NoteState = (props) => {
 
       // Passing the notes state to the notesInitial
       const [notes, setNotes] = useState(notesInitial);
+      const [filteredNotes, setFilteredNotes] = useState([]); // filtred searching
 
        // Get all notes
        const getNotes = async () =>{
@@ -268,7 +269,7 @@ const NoteState = (props) => {
 
 
       return(
-        <NoteContext.Provider value={{notes, addNote, deleteNote, editNote, getNotes, updateNoteCompletedStatus}}>
+        <NoteContext.Provider value={{notes, addNote, deleteNote, editNote, getNotes, updateNoteCompletedStatus, filteredNotes, setFilteredNotes}}>
                 {props.children}
             </NoteContext.Provider>  
         )
