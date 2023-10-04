@@ -117,7 +117,7 @@ const Notescomp = ({ searchQuery, selectedPriority }) => {
   
   // Conext api from the express api we have created
   const context = useContext(noteContext);
-  const {notes, getNotes, addNote, editNote, deleteNote,updateNoteCompletedStatus} = (context)
+  const {notes, getNotes, addNote, editNote, deleteNote,updateNoteCompletedStatus, filteredNotes, setFilteredNotes } = (context)
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -296,19 +296,23 @@ function taskDeleted(event,note) {
 
 
 
- // Filter the notes based on the search query
- const filteredNotes = notes.filter((note) => {
-const queryWords = searchQuery.toLowerCase().split(' ');
+ // Filter the notes based on the search query and set filteredNotes
+useEffect(() => {
+  const filteredNote = notes.filter((note) => {
+    const queryWords = searchQuery.toLowerCase().split(' ');
 
-  // Check if any of the query words match in either the title or description
-  return queryWords.every((queryWord) => {
-    return (
-      note.title.toLowerCase().includes(queryWord) ||
-      note.description.toLowerCase().includes(queryWord)
-    );
-  }) &&
-  (selectedPriority === 'All' || note.tag.toLowerCase() === selectedPriority.toLowerCase())
-});
+    // Check if any of the query words match in either the title or description
+    return queryWords.every((queryWord) => {
+      return (
+        note.title.toLowerCase().includes(queryWord) ||
+        note.description.toLowerCase().includes(queryWord)
+      );
+    }) &&
+      (selectedPriority === 'All' || note.tag.toLowerCase() === selectedPriority.toLowerCase());
+  });
+
+  setFilteredNotes(filteredNote);
+}, [notes, searchQuery, selectedPriority, setFilteredNotes]);
 
 // Modal heading toggle the text state
 const [isTextVisible, setIsTextVisible] = useState(false);
@@ -359,7 +363,7 @@ useEffect(() => {
             </div>
             <div className="task-body"><span className="task-description">{note.description}</span></div>
             <div className="task-footer"><span className="task-status">Task completed</span><span className="task-timestamp">{note.date}</span></div>
-            <code style={{position:"relative",left:"2px",textAlignLast:"left",bottom:"10px",userSelect:"none",color:"rgb(219,215,210)"}}>{index+1}</code>
+            <code style={{fontWeight:"bold",position:"relative", fontSize:"12px",left:"4px",textAlignLast:"left",bottom:"12px",userSelect:"none",color:"#bb00ff"}}>{index+1}</code>
           </div>
         })}
         </div>
