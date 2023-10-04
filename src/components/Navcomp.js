@@ -12,7 +12,7 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
 
   // Conext api from the express api we have created
   const context = useContext(noteContext);
-  const {notes} = (context)
+  const {filteredNotes} = (context)
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [hovered, setHovered] = useState(false);
 
@@ -62,7 +62,7 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
     {localStorage.getItem("token")&&
     <header className="header">
       <div className="header-top">
-        <div className='header-logo'><Link style={colorStyle}   onMouseEnter={handleHover}  onMouseLeave={handleMouseLeave}  to="/">TodoNotes-{notes.length}</Link></div>
+        <div className='header-logo'><Link style={colorStyle}   onMouseEnter={handleHover}  onMouseLeave={handleMouseLeave}  to="/">TodoNotes-{filteredNotes.length}</Link></div>
         <div className="header-toggle" onClick={toggleMenu}>
           <div className={`hamburger ${isMenuVisible ? 'is-active' : ''}`} id="hamburgerStyles">
             <span className="line"></span>
