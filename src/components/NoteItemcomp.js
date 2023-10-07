@@ -338,7 +338,7 @@ useEffect(() => {
   return parts.map((part, index) => {
 
     if (regex.test(part)) {
-        return <span key={index} style={{background:"#F9B7FF",opacity:0.8}}>{part}</span>; 
+        return <span key={index} style={{background:"#F9B7FF"}}>{part}</span>; 
     }
     return part;
   });
