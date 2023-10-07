@@ -328,6 +328,23 @@ useEffect(() => {
   };
 }, [isTextVisible]);
 
+  function highlightMatches(text, searchQuery) {
+    // Escape special characters in the search query and create a regular expression with 'gi' flags
+  const escapedQuery = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escapedQuery})`, 'gi');
+  // Split the text into parts based on the matches
+  const parts = text.split(regex);
+
+  return parts.map((part, index) => {
+
+    if (regex.test(part)) {
+        return <span key={index} style={{background:"#F9B7FF",opacity:0.8}}>{part}</span>; 
+    }
+    return part;
+  });
+
+}
+
   return (
     <>
     <div>
@@ -347,7 +364,7 @@ useEffect(() => {
             <div className="task-header" >
               <div className="left-side">
                 <ion-icon name="flame" id="flame-color" style={{ color: getFlameColor(note.tag) }}></ion-icon>
-                <span className="task-title">{note.title}</span>
+                <span className="task-title">{searchQuery ? highlightMatches(note.title, searchQuery) : note.title}</span>
               </div>
               <div className="right-side">
                 <div className="btn-edit-task" title="Edit task" onClick={()=> updateNote(note)}>
@@ -361,7 +378,7 @@ useEffect(() => {
                 </div>
               </div>
             </div>
-            <div className="task-body"><span className="task-description">{note.description}</span></div>
+            <div className="task-body"><span className="task-description">{searchQuery ? highlightMatches(note.description, searchQuery): note.description}</span></div>
             <div className="task-footer"><span className="task-status">Task completed</span><span className="task-timestamp">{note.date}</span></div>
             <code style={{fontWeight:"bold",position:"relative", fontSize:"12px",left:"4px",textAlignLast:"left",bottom:"12px",userSelect:"none",color:"#bb00ff"}}>{index+1}</code>
           </div>
