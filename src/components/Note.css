@@ -331,13 +331,14 @@ body {
   pointer-events: none;
   opacity: 0;
   transition: all 0.2s ease;
-  z-index: 3;
+  z-index: 4;
   transition-delay: 0.1s;
 }
 .notification.-is-shown {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+  z-index:5;
 }
 
 .overlay {
