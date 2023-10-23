@@ -236,7 +236,7 @@
 
 /* RESPONSIVE */
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 500px) {
 
     .containerAuth::before,
     .containerAuth.sign-in::before,
