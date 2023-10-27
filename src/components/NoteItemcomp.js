@@ -8,6 +8,8 @@ import UnCompletedTaskSound from './Sounds/UnCompletedTask.mp3';
 import TaskDeleted1Sound from './Sounds/TaskDeleted1.mp3';
 import TaskDeleted2Sound from './Sounds/TaskDeleted2.mp3';
 import AddTaskSound from './Sounds/AddTask.mp3'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 
@@ -342,8 +344,20 @@ useEffect(() => {
     }
     return part;
   });
-
 }
+
+// Showing the skeleton loading while in the api call
+const [skeletonCount, setSkeletonCount] = useState(3); // Set an initial count
+
+useEffect(() => {
+  if (isLoading) {
+    // If data is loading, set the skeleton count to match your desired fixed length
+    setSkeletonCount(5);
+  } else {
+    // If data is loaded, set the skeleton count to match the length of filteredNotes
+    setSkeletonCount(filteredNotes.length);
+  }
+}, [isLoading, filteredNotes]);
 
   return (
     <>
@@ -354,7 +368,30 @@ useEffect(() => {
         <div className="notification"><i className="fa-solid fa-circle-check"></i> Task edited successfully</div>
         <div className="tasks">
            {isLoading ? (
-                <DotPulse  size={50} speed={1.3}  color="#bc02ff"/>
+                Array.from({ length: skeletonCount }, (_, index) => (
+        <div className="task" key={`skeleton-${index}`}>
+        <div className="task-header" >
+          <div className="left-side">
+           <Skeleton height={15} borderRadius={15} width={15}/>
+          <span className="task-title"><Skeleton style={{position:"relative", bottom:"24px", left:"28px", width:"330px"}} /></span>
+          </div>
+          <div className="right-side">
+            <div className="btn-edit-task" title="Edit task">
+              <Skeleton height={18} width={18}/>
+            </div>
+            <div className="btn-complete-task" title="Complete task">
+              <Skeleton height={18} width={18}/>
+            </div>
+            <div className="btn-remove-task" title="Remove task">
+              <Skeleton height={18} width={18}/>
+            </div>
+          </div>
+        </div>
+        <div className="task-body"><span className="task-description"><Skeleton count={2} /></span></div>
+        <div className="task-footer"><span className="task-status">Task completed</span><span className="task-timestamp-skeleton"><Skeleton width={165} height={30} /></span></div> 
+        <code style={{fontWeight:"bold",position:"relative", fontSize:"12px",left:"4px",textAlignLast:"left",bottom:"12px",userSelect:"none",color:"#bb00ff"}}><Skeleton height={10} width={10} /></code>
+      </div>
+      ))
               ) : filteredNotes.length === 0 ? (
                 <h3>Notes not found!</h3>
               ) : null}
@@ -384,6 +421,7 @@ useEffect(() => {
           </div>
         })}
         </div>
+          
         <div className="overlay">
           <p>Add task</p>{isTextVisible ? <span className='-w-animation'> Fill at least the title 3 characters, description 5 characters required to continue 😵</span> : <span className='-w-animation'>Dude! you can fill with title, description but you are grant without filling the tag😂</span>}
           <form className="modal">
