@@ -373,7 +373,7 @@ useEffect(() => {
         <div className="task-header" >
           <div className="left-side">
            <Skeleton height={15} borderRadius={15} width={15}/>
-          <span className="task-title"><Skeleton style={{position:"relative", bottom:"24px", left:"28px", width:"330px"}} /></span>
+          <span className="task-title"><Skeleton className="task-title-skeleton" /></span>
           </div>
           <div className="right-side">
             <div className="btn-edit-task" title="Edit task">
