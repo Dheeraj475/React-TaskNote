@@ -366,7 +366,7 @@ useEffect(() => {
         <input id="ipt-toggle-modal" type="checkbox" checked={showModal} onChange={openModal}  />
         <label className="btn-toggle-modal" htmlFor="ipt-toggle-modal"> <span>+</span></label>
         <div className="notification"><i className="fa-solid fa-circle-check"></i> Task edited successfully</div>
-        <div className="tasks">
+        <div className="tasks" style={{isLoading && overflowY:"hidden"}}>
            {isLoading ? (
                 Array.from({ length: skeletonCount }, (_, index) => (
         <div className="task" key={`skeleton-${index}`}>
