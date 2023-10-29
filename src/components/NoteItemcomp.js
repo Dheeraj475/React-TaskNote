@@ -8,7 +8,7 @@ import UnCompletedTaskSound from './Sounds/UnCompletedTask.mp3';
 import TaskDeleted1Sound from './Sounds/TaskDeleted1.mp3';
 import TaskDeleted2Sound from './Sounds/TaskDeleted2.mp3';
 import AddTaskSound from './Sounds/AddTask.mp3'
-import Skeleton,{SkeletonTheme} from 'react-loading-skeleton'
+import Skeleton from 'react-loading-skeleton'
 import './Skeleton.css';
 
 
@@ -364,13 +364,7 @@ useEffect(() => {
     <div>
       <section className="app" style={{ overflowY: isLoading ? "hidden" : "scroll"}}>
         <input id="ipt-toggle-modal" type="checkbox" checked={showModal} onChange={openModal}/>
-        {isLoading ? 
-        <SkeletonTheme highlightColor="#bb00ff">
-          <label className="btn-toggle-modal" htmlFor="ipt-toggle-modal"> <span><Skeleton width={60} height={60} style={{borderRadius:"55%", position:"relative", bottom:"3px", right:"1px"}}/></span></label>
-        </SkeletonTheme>
-        :
         <label className="btn-toggle-modal" htmlFor="ipt-toggle-modal"> <span>+</span></label>
-        }  
         <div className="notification"><i className="fa-solid fa-circle-check"></i> Task edited successfully</div>
         <div className="tasks">
            {isLoading ? (
