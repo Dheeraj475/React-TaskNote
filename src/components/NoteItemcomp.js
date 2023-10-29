@@ -8,7 +8,7 @@ import UnCompletedTaskSound from './Sounds/UnCompletedTask.mp3';
 import TaskDeleted1Sound from './Sounds/TaskDeleted1.mp3';
 import TaskDeleted2Sound from './Sounds/TaskDeleted2.mp3';
 import AddTaskSound from './Sounds/AddTask.mp3'
-import Skeleton,,{SkeletonTheme} from 'react-loading-skeleton'
+import Skeleton,{SkeletonTheme} from 'react-loading-skeleton'
 import './Skeleton.css';
 
 
