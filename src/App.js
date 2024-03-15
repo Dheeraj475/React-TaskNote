@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navcomp from './components/Navcomp';
 import NoteItemcomp from './components/NoteItemcomp';
