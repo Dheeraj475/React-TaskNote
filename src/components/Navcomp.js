@@ -1,7 +1,6 @@
 import React, { useState,useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import noteContext from '../context/notes/noteContext';
-import Skeleton from 'react-loading-skeleton'
 import './Skeleton.css';
 
 const Navcomp = ({ searchQuery, onSearchChange }) => {
