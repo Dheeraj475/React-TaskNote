@@ -89,7 +89,11 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
               onChange={handlePriorityChange}
               style={{ fontSize:"15px",appearance:"none",outline:"0",width:"68px",cursor: 'pointer', background:"#C2DFFF",padding: "6px", border:"none", borderRadius:"10px"}}
             >
-              <option value="All">Priority</option>
+              <option value="All">
+              <ion-icon name="flame" id="flame-color" style={{ color:"red"}}></ion-icon>
+              <ion-icon name="flame" id="flame-color" style={{ color:"blue"}}></ion-icon>
+              <ion-icon name="flame" id="flame-color" style={{ color:"grey"}}></ion-icon>
+              </option>
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
