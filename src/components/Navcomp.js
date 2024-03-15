@@ -90,7 +90,7 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
               style={{ fontSize:"15px",appearance:"none",outline:"0",width:"68px",cursor: 'pointer', background:"#C2DFFF",padding: "6px", border:"none", borderRadius:"10px"}}
             >
               <option value="All">
-              Prirority
+              Priroritly
               </option>
               <option value="High">High</option>
               <option value="Medium">Medium</option>
