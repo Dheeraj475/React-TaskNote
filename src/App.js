@@ -45,6 +45,12 @@ function App() {
   return (
     <div className="App">
       <>
+ {isVisible && (
+         <div className="arrow-ui" onClick={scrollToTop}>
+            <div className="arrow-up"></div>
+        </div>
+      )}
+    
         <NoteState>
           <BrowserRouter>
             <Navcomp searchQuery={searchQuery} onSearchChange={handleSearchChange} selectedPriority={selectedPriority} />
@@ -59,11 +65,6 @@ function App() {
             </Routes>
           </BrowserRouter>
         </NoteState>
-        {isVisible && (
-         <div className="arrow-ui" onClick={scrollToTop}>
-            <div className="arrow-up"></div>
-        </div>
-      )}
       </>
     </div>
   );
