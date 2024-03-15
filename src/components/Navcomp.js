@@ -50,6 +50,7 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
     const newValue = e.target.value;
     setSelectedPriority(newValue); 
     onSearchChange(searchQuery, newValue);  
+    setIsMenuVisible(false);
   };
 
   const handleSearchChange = (e) => {
