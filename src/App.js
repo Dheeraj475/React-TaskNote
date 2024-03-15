@@ -15,6 +15,31 @@ function App() {
     setSelectedPriority(newPriority);
   };
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Function to scroll to the top of the page
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Smooth scroll behavior
+    });
+  };
+
+  // Function to check if the button should be visible
+  const handleScroll = () => {
+    const scrollTop = window.pageYOffset;
+    if (scrollTop > 300) { // Change the value according to your requirement
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  // Add event listener for scroll
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
 
   return (
@@ -34,6 +59,11 @@ function App() {
             </Routes>
           </BrowserRouter>
         </NoteState>
+        {isVisible && (
+         <div className="arrow-ui" onClick={scrollToTop}>
+            <div className="arrow-up"></div>
+        </div>
+      )}
       </>
     </div>
   );
