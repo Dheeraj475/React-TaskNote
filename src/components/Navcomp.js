@@ -77,7 +77,7 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
         <ul id="navigation" style={{ listStyleType: 'none', paddingInlineStart: 0 }} className={`navigation ${isMenuVisible ? 'navigation--visible' : ''}`}>
           
           <li className="nav-item">
-            <form onSubmit={(e) => e.preventDefault()}>
+           <form onSubmit={(e) => { e.preventDefault(); setIsMenuVisible(false); }}>
               <input type="search"  value={searchQuery} onChange={handleSearchChange}  placeholder="Search" />
             </form>
           </li>
