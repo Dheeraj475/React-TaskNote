@@ -5,6 +5,7 @@ import NoteItemcomp from './components/NoteItemcomp';
 import NoteState from './context/notes/NoteState';
 import Authcomp from './components/Authcomp';
 import { ToastContainer } from 'react-toastify';
+import "./index.css";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
