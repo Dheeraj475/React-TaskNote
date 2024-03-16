@@ -2,7 +2,6 @@ import React, { useState,useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import noteContext from '../context/notes/noteContext';
 import './Skeleton.css';
-import { animateScroll as scroll } from 'react-scroll';
 
 const Navcomp = ({ searchQuery, onSearchChange }) => {
   /*This is being used by practice*/ 
@@ -58,19 +57,12 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
     onSearchChange(newValue, selectedPriority);
   };
 
-  const handleScroll = () => {
-    scroll.scrollToTop({
-      duration: 500, // Optional, the duration of the scroll animation in milliseconds
-      smooth: 'easeInOutQuint', // Optional, the easing function for the scroll animation
-    });
-  }
-
   return (
     <>
     {localStorage.getItem("token")&&
     <header className="header">
       <div className="header-top">
-        <div className='header-logo' onClick={handleScroll} ><Link style={colorStyle}   onMouseEnter={handleHover}  onMouseLeave={handleMouseLeave}  to="/">TaskNotes-{filteredNotes.length}</Link></div>
+        <div className='header-logo'><Link style={colorStyle}   onMouseEnter={handleHover}  onMouseLeave={handleMouseLeave}  to="/">TaskNotes-{filteredNotes.length}</Link></div>
         <div className="header-toggle" onClick={toggleMenu}>
           <div className={`hamburger ${isMenuVisible ? 'is-active' : ''}`} id="hamburgerStyles">
             <span className="line"></span>
