@@ -57,13 +57,19 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
     onSearchChange(newValue, selectedPriority);
   };
 
+  const handleScroll = () => {
+     window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
 
   return (
     <>
     {localStorage.getItem("token")&&
     <header className="header">
       <div className="header-top">
-        <div className='header-logo'><Link style={colorStyle}   onMouseEnter={handleHover}  onMouseLeave={handleMouseLeave}  to="/">TaskNotes-{filteredNotes.length}</Link></div>
+        <div className='header-logo'><Link onClick={handleScroll} style={colorStyle}   onMouseEnter={handleHover}  onMouseLeave={handleMouseLeave}  to="/">TaskNotes-{filteredNotes.length}</Link></div>
         <div className="header-toggle" onClick={toggleMenu}>
           <div className={`hamburger ${isMenuVisible ? 'is-active' : ''}`} id="hamburgerStyles">
             <span className="line"></span>
