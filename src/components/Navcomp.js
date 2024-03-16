@@ -2,6 +2,7 @@ import React, { useState,useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import noteContext from '../context/notes/noteContext';
 import './Skeleton.css';
+import { animateScroll as scroll } from 'react-scroll';
 
 const Navcomp = ({ searchQuery, onSearchChange }) => {
   /*This is being used by practice*/ 
@@ -58,9 +59,9 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
   };
 
   const handleScroll = () => {
-     window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+    scroll.scrollToTop({
+      duration: 500, // Optional, the duration of the scroll animation in milliseconds
+      smooth: 'easeInOutQuint', // Optional, the easing function for the scroll animation
     });
   }
 
