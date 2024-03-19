@@ -82,7 +82,7 @@ const Navcomp = ({ searchQuery, onSearchChange }) => {
           </li>
           <li className="nav-item">
             {/* Create the dropdown menu for priorities */}
-            <select className="select"
+            <select className="select makeselect"
               value={selectedPriority}
               onChange={handlePriorityChange}
               style={{ fontSize:"15px",appearance:"none",outline:"0",width:"68px",cursor: 'pointer', background:"#C2DFFF",padding: "6px", border:"none", borderRadius:"10px"}}

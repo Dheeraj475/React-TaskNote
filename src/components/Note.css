@@ -62,7 +62,11 @@ body {
     height: 200px; 
     /* You can adjust here how much will be visible */
   }
-  
+ 
+  .makeselect{
+    -webkit-tap-highlight-color: transparent;
+  }
+
   .logout{
     background: #D462FF;
     color:black;
@@ -71,6 +75,7 @@ body {
     cursor: pointer;
     padding: 10px 13px 10px 13px;
     border-radius: 20px;
+    -webkit-tap-highlight-color: transparent;
   }
   
   .logout:hover{
@@ -129,6 +134,8 @@ body {
   /*-------------------------------Hamburgur---------------------------------*/
   .hamburger{
     margin-top: 17px;
+    -webkit-tap-highlight-color: transparent;
+
   }
   
   .hamburger .line{
