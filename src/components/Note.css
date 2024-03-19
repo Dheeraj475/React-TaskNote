@@ -713,7 +713,7 @@ button:disabled {
   background: #f2f3f8;
   padding: 8px 10px;
   border-radius: 5px;
-  z-index: 3;
+  z-index: 2;
   font-size: 0.8rem;
   display: inline-block;
   color: #666;
@@ -775,7 +775,7 @@ button:disabled {
   color: rgb(94, 94, 94);
   border: none;
   cursor: pointer;
-  z-index: 10;
+  z-index: 2;
   background-color:transparent;
   -webkit-tap-highlight-color: transparent;
 
