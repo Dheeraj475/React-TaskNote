@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext,useCallback } from 'react';
+import React, { useState, useEffect,useContext,useCallback,useRef } from 'react';
 import './Note.css';
 import noteContext from '../context/notes/noteContext';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ import TaskDeleted2Sound from './Sounds/TaskDeleted2.mp3';
 import AddTaskSound from './Sounds/AddTask.mp3'
 import Skeleton from 'react-loading-skeleton'
 import './Skeleton.css';
+import ArrowCircleUpSharpIcon from '@mui/icons-material/ArrowCircleUpSharp';
 
 
 
@@ -22,6 +23,33 @@ const Notescomp = ({ searchQuery, selectedPriority }) => {
   const unCompleteSound = new Audio(UnCompletedTaskSound);
   const DeletedSound1 = new Audio(TaskDeleted1Sound);
   const DeletedSound2 = new Audio(TaskDeleted2Sound);
+
+  // Scroll to top adding
+  const [showScrollButton, setShowScrollButton] = useState(false);
+    
+  // Ref for the task-note container
+    const taskNoteContainerRef = useRef(null);
+  
+    useEffect(() => {
+      const taskNoteContainer = taskNoteContainerRef.current;
+      const handleScroll = () => {
+        if (taskNoteContainer.scrollTop > 300) {
+          setShowScrollButton(true);
+        } else {
+          setShowScrollButton(false);
+        }
+      };
+  
+      taskNoteContainer.addEventListener('scroll', handleScroll);
+      return () => {
+        taskNoteContainer.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
+  
+    const scrollToTop = () => {
+      taskNoteContainerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
 
   // Modal, editing and loading states
   const [showModal, setShowModal] = useState(false);
@@ -362,7 +390,7 @@ useEffect(() => {
   return (
     <>
     <div>
-      <section className="app" style={{ overflowY: isLoading ? "hidden" : "scroll"}}>
+      <section className="app" ref={taskNoteContainerRef} style={{ overflowY: isLoading ? "hidden" : "scroll"}}>
         <input id="ipt-toggle-modal" type="checkbox" checked={showModal} onChange={openModal}/>
         <label className="btn-toggle-modal" htmlFor="ipt-toggle-modal"> <span>+</span></label>
         <div className="notification"><i className="fa-solid fa-circle-check"></i> Task edited successfully</div>
@@ -466,8 +494,14 @@ useEffect(() => {
 
           </form>
         </div>
+        
       </section>
+      { showScrollButton && (
+              <button className="scrollToTopButton" onClick={scrollToTop}><ArrowCircleUpSharpIcon/></button>
+      )}
     </div>
+
+
     </>
   )
 }

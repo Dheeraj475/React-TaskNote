@@ -766,4 +766,26 @@ button:disabled {
 }
 
 
+/*----------------------Scroll to top-------------------------*/
+.scrollToTopButton{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  bottom: 40px;
+  color: rgb(94, 94, 94);
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  background-color:transparent;
+  touch-action: inherit;
+}
+
+.scrollToTopButton svg {
+  font-size: 35px !important; /* Adjust the size as needed */
+}
+
+.scrollToTopButton:active {
+  color: #bb00ff;
+  background-color: transparent;
+}
 
