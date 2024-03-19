@@ -532,7 +532,7 @@ button:disabled {
 .tasks {
   min-height: 600px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   word-wrap: break-word;
   align-items: center;
   overflow-x: hidden;
