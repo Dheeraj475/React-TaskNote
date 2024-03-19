@@ -777,7 +777,8 @@ button:disabled {
   cursor: pointer;
   z-index: 10;
   background-color:transparent;
-  touch-action: inherit;
+  -webkit-tap-highlight-color: transparent;
+
 }
 
 .scrollToTopButton svg {

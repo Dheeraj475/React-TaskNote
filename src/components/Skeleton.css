@@ -53,3 +53,8 @@
       --pseudo-element-display: none; /* Disable animation */
     }
   }
+
+  .select,.logout{
+    -webkit-tap-highlight-color: transparent;
+  }
+
